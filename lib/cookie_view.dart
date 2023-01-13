@@ -38,8 +38,8 @@ class _CookiePageState extends State<CookiePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFFCFAF8),
-      body: ListView(
-
+      body: SingleChildScrollView(
+      child: Stack(
         children: <Widget>[
           const SizedBox(height: 15.0),
           Container(
@@ -56,15 +56,18 @@ class _CookiePageState extends State<CookiePage> {
 
 
               children: <Widget>[
-                for ( var i in CatalogModel.items) _buildCard(i.name.toString(), '\$${i.price}', 'assets/assets/cookiemint.jpg', false, false, context),
+                for ( var i in CatalogModel.items)
+                  _buildCard(i.name.toString(), '\$${i.price}', 'assets/assets/cookiemint.jpg', false, false, context),
                 _buildCard('Cookie mint', '\$3.99', 'assets/assets/cookiemint.jpg', false, false, context),
                 _buildCard('Cookie cream', '\$5.99', 'assets/assets/cookiecream.jpg', true, false, context),
                 _buildCard('Cookie classic', '\$1.99', 'assets/cookieclassic.jpg', false, true, context),
-                _buildCard('Cookie choco', '\$2.99', 'assets/assets/cookiechoco.jpg', false, false, context)
+                _buildCard('Cookie choco', '\$2.99', 'assets/assets/cookiechoco.jpg', false, false, context),
+                _buildCard('Cookie choco', '\$2.99', 'assets/assets/cookiechoco.jpg', false, false, context),
+                _buildCard('Cookie classic', '\$1.99', 'assets/cookieclassic.jpg', false, true, context)
               ],
             ),
           ),
-        ],
+        ]),
       ),
     );
   }
