@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'bottom_bar.dart';
+import 'cookie_view.dart';
 
 void main() {
   runApp(const MyApp());
@@ -77,8 +78,8 @@ class _MyHomePageState extends State<MyHomePage>
                 indicatorColor: Colors.transparent,
                 labelColor: Color(0xFFC88D67),
                 isScrollable: true,
-                labelPadding: EdgeInsets.only(right: 45.0),
-                unselectedLabelColor: Color(0xFFCDCDCD),
+                labelPadding: const EdgeInsets.only(right: 45.0),
+                unselectedLabelColor: const Color(0xFFCDCDCD),
                 tabs: const [
                   Tab(
                     child: Text('Cookies',
@@ -107,7 +108,11 @@ class _MyHomePageState extends State<MyHomePage>
               width: double.infinity,
               child: TabBarView(
                 controller: _tabController,
-                children: [],
+                children: const [
+                  CookiePage(),
+                  CookiePage(),
+                  CookiePage(),
+                ],
               ),
             )
           ]),
