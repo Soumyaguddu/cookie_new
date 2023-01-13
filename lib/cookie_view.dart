@@ -1,39 +1,66 @@
+import 'dart:convert';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+import 'cookie_details.dart';
+import 'models/Catalog.dart';
 
 class CookiePage extends StatefulWidget {
   const CookiePage({Key? key}) : super(key: key);
+  @override
 
   @override
   State<CookiePage> createState() => _CookiePageState();
 }
 
 class _CookiePageState extends State<CookiePage> {
+  void initState() {
+    super.initState();
+    loadData();
+  }
+
+  loadData() async {
+    await Future.delayed(const Duration(seconds: 3));
+    var catalogJson = await rootBundle.loadString("assets/assets/catalog.json");
+
+    var decodeData = jsonDecode(catalogJson);
+    var productData = decodeData["products"];
+    if (kDebugMode) {
+      print(productData);
+    }
+    CatalogModel.items =
+        List.from(productData).map<Item>((item) => Item.fromMap(item)).toList();
+    setState(() {});
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFFCFAF8),
       body: ListView(
+
         children: <Widget>[
           const SizedBox(height: 15.0),
           Container(
             padding: const EdgeInsets.only(right: 15.0),
             width: MediaQuery.of(context).size.width - 30.0,
             height: MediaQuery.of(context).size.height - 50.0,
+
             child: GridView.count(
               crossAxisCount: 2,
               primary: false,
               crossAxisSpacing: 10.0,
               mainAxisSpacing: 15.0,
               childAspectRatio: 0.8,
+
+
               children: <Widget>[
-                _buildCard('Cookie mint', '\$3.99',
-                    'assets/assets/cookiemint.jpg', false, false, context),
-                _buildCard('Cookie cream', '\$5.99',
-                    'assets/assets/cookiecream.jpg', true, false, context),
-                _buildCard('Cookie classic', '\$1.99',
-                    'assets/cookieclassic.jpg', false, true, context),
-                _buildCard('Cookie choco', '\$2.99',
-                    'assets/assets/cookiechoco.jpg', false, false, context)
+                for ( var i in CatalogModel.items) _buildCard(i.name.toString(), '\$${i.price}', 'assets/assets/cookiemint.jpg', false, false, context),
+                _buildCard('Cookie mint', '\$3.99', 'assets/assets/cookiemint.jpg', false, false, context),
+                _buildCard('Cookie cream', '\$5.99', 'assets/assets/cookiecream.jpg', true, false, context),
+                _buildCard('Cookie classic', '\$1.99', 'assets/cookieclassic.jpg', false, true, context),
+                _buildCard('Cookie choco', '\$2.99', 'assets/assets/cookiechoco.jpg', false, false, context)
               ],
             ),
           ),
@@ -46,17 +73,25 @@ class _CookiePageState extends State<CookiePage> {
       bool isFavorite, context) {
     return Padding(
       padding:
-          const EdgeInsets.only(top: 5.0, bottom: 5.0, left: 5.0, right: 5.0),
+           EdgeInsets.only(top: 5.0, bottom: 5.0, left: 5.0, right: 5.0),
       child: InkWell(
-        onTap: () {},
+        onTap: () {
+
+          Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) => CookieDetail(
+                  assetPath: imgPath,
+                  cookieprice:price,
+                  cookiename: name
+              )));
+        },
         child: Container(
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(5.0),
               boxShadow: [
                 BoxShadow(
-                    color: Colors.grey.withOpacity(0.2),
+                    color: Colors.grey.withOpacity(0.9),
                     spreadRadius: 3.0,
-                    blurRadius: 5.0)
+                    blurRadius: 8.0)
               ],
               color: Colors.white),
           child: Column(
@@ -76,13 +111,13 @@ class _CookiePageState extends State<CookiePage> {
               Hero(
                   tag: imgPath,
                   child: Container(
-                    height: 75.0,
-                    width: 75.0,
+                    height: 60.0,
+                    width: 60.0,
                     decoration: BoxDecoration(
                         image: DecorationImage(
                             image: AssetImage(imgPath), fit: BoxFit.contain)),
                   )),
-              const SizedBox(height: 7.0),
+              const SizedBox(height: 5.0),
               Text(
                 price,
                 style: const TextStyle(
