@@ -1,6 +1,8 @@
+import 'package:cookie_new/Login/login_page.dart';
 import 'package:cookie_new/widgets/drawer.dart';
 import 'package:flutter/material.dart';
 
+import 'constants.dart';
 import 'cookie_view.dart';
 import 'widgets/bottom_bar.dart';
 
@@ -14,9 +16,34 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return  MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: MyHomePage(title: 'Electronics'),
+      home: const LoginPage(),
+
+      theme: ThemeData(
+          primaryColor: kPrimaryColor,
+          scaffoldBackgroundColor: Colors.white,
+          elevatedButtonTheme: ElevatedButtonThemeData(
+            style: ElevatedButton.styleFrom(
+              elevation: 0,
+              primary: kPrimaryColor,
+              shape: const StadiumBorder(),
+              maximumSize: const Size(double.infinity, 56),
+              minimumSize: const Size(double.infinity, 56),
+            ),
+          ),
+          inputDecorationTheme: const InputDecorationTheme(
+            filled: true,
+            fillColor: kPrimaryLightColor,
+            iconColor: kPrimaryColor,
+            prefixIconColor: kPrimaryColor,
+            contentPadding: EdgeInsets.symmetric(
+                horizontal: defaultPadding, vertical: defaultPadding),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(30)),
+              borderSide: BorderSide.none,
+            ),
+          )),
     );
   }
 }
@@ -63,8 +90,17 @@ class _MyHomePageState extends State<MyHomePage>
               fontFamily: 'Varela'),
           actions: <Widget>[
             IconButton(
-              icon: const Icon(Icons.notifications, color: Color(0xFF19191A)),
-              onPressed: () {},
+              icon: const Icon(Icons.logout, color: Color(0xFF19191A)),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return LoginPage();
+                    },
+                  ),
+                );
+              },
             )
           ]),
       body: ListView(
@@ -73,7 +109,7 @@ class _MyHomePageState extends State<MyHomePage>
             const SizedBox(height: 5.0),
             const Text("Categories",
                 style: TextStyle(
-                    color: Color(0xFFF17532),
+                    color: kPrimaryColor,
                     fontWeight: FontWeight.bold,
                     fontSize: 30.0,
                     fontFamily: 'Varela')),
@@ -81,7 +117,7 @@ class _MyHomePageState extends State<MyHomePage>
             TabBar(
                 controller: _tabController,
                 indicatorColor: Colors.transparent,
-                labelColor: Color(0xFFC88D67),
+                labelColor: kPrimaryMidLightColor,
                 isScrollable: true,
                 labelPadding: const EdgeInsets.only(right: 45.0),
                 unselectedLabelColor: const Color(0xFFCDCDCD),
@@ -109,11 +145,12 @@ class _MyHomePageState extends State<MyHomePage>
           ]),
       floatingActionButton: FloatingActionButton(
           onPressed: () {},
-          backgroundColor: Colors.orange,
+          backgroundColor: kPrimaryColor,
           child: const Icon(Icons.payment)),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: const BottomBar(),
       drawer: const MyDrawer(),
+
     );
   }
 }

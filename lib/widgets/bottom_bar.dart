@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../constants.dart';
+
 class BottomBar extends StatefulWidget {
   const BottomBar({Key? key}) : super(key: key);
 
@@ -36,7 +38,7 @@ class _BottomBarState extends State<BottomBar> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: const <Widget>[
-                  Icon(Icons.home, color: Colors.orange),
+                  Icon(Icons.home, color: kPrimaryColor),
                   Icon(Icons.percent_outlined, color: Colors.grey)
                 ],
               ),
