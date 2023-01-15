@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.cookie_new">
    <application
-        android:label="cookie_new"
+        android:label="product_view"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

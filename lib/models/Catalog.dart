@@ -10,6 +10,8 @@ class Item {
   final num price;
   final String color;
   final String image;
+  final bool added;
+  final bool isFavorite;
   Item({
    required this.id,
    required this.name,
@@ -17,6 +19,8 @@ class Item {
    required this.price,
    required this.color,
    required this.image,
+   required this.added,
+   required this.isFavorite,
   });
 
  
@@ -28,6 +32,8 @@ class Item {
     required num price,
     required String color,
     required String image,
+    required bool added,
+    required bool isFavorite,
   }) {
     return Item(
       id: id ?? this.id,
@@ -36,6 +42,8 @@ class Item {
       price: price ?? this.price,
       color: color ?? this.color,
       image: image ?? this.image,
+      added: added ?? this.added,
+      isFavorite: isFavorite ?? this.isFavorite,
     );
   }
 
@@ -47,6 +55,8 @@ class Item {
       price: model.price ?? this.price,
       color: model.color ?? this.color,
       image: model.image ?? this.image,
+      added: model.added ?? this.added,
+      isFavorite: model.isFavorite ?? this.isFavorite,
     );
   }
 
@@ -58,6 +68,8 @@ class Item {
       'price': price,
       'color': color,
       'image': image,
+      'added': added,
+      'isFavorite': isFavorite,
     };
   }
 
@@ -71,6 +83,8 @@ class Item {
       price: map['price'],
       color: map['color'],
       image: map['image'],
+      added: map['added'],
+      isFavorite: map['isFavorite'],
     );
   }
 
@@ -93,7 +107,9 @@ class Item {
       o.desc == desc &&
       o.price == price &&
       o.color == color &&
-      o.image == image;
+      o.image == image &&
+      o.added == added &&
+      o.isFavorite == isFavorite;
   }
 
   @override
@@ -103,6 +119,8 @@ class Item {
       desc.hashCode ^
       price.hashCode ^
       color.hashCode ^
-      image.hashCode;
+      image.hashCode ^
+    added.hashCode ^
+    isFavorite.hashCode;
   }
 }

@@ -57,13 +57,7 @@ class _CookiePageState extends State<CookiePage> {
 
               children: <Widget>[
                 for ( var i in CatalogModel.items)
-                  _buildCard(i.name.toString(), '\$${i.price}', 'assets/assets/cookiemint.jpg', false, false, context),
-                _buildCard('Cookie mint', '\$3.99', 'assets/assets/cookiemint.jpg', false, false, context),
-                _buildCard('Cookie cream', '\$5.99', 'assets/assets/cookiecream.jpg', true, false, context),
-                _buildCard('Cookie classic', '\$1.99', 'assets/cookieclassic.jpg', false, true, context),
-                _buildCard('Cookie choco', '\$2.99', 'assets/assets/cookiechoco.jpg', false, false, context),
-                _buildCard('Cookie choco', '\$2.99', 'assets/assets/cookiechoco.jpg', false, false, context),
-                _buildCard('Cookie classic', '\$1.99', 'assets/cookieclassic.jpg', false, true, context)
+                  _buildCard(i.name.toString(), '\$${i.price}',i.desc, i.image, i.added, i.isFavorite, context)
               ],
             ),
           ),
@@ -72,19 +66,20 @@ class _CookiePageState extends State<CookiePage> {
     );
   }
 
-  Widget _buildCard(String name, String price, String imgPath, bool added,
+  Widget _buildCard(String name, String price,String desc, String imgPath, bool added,
       bool isFavorite, context) {
     return Padding(
       padding:
-           EdgeInsets.only(top: 5.0, bottom: 5.0, left: 5.0, right: 5.0),
+           const EdgeInsets.only(top: 5.0, bottom: 5.0, left: 5.0, right: 5.0),
       child: InkWell(
         onTap: () {
 
           Navigator.of(context).push(
               MaterialPageRoute(builder: (context) => CookieDetail(
-                  assetPath: imgPath,
+                  imgPath: imgPath,
                   cookieprice:price,
-                  cookiename: name
+                  cookiename: name,
+                 desc:desc,
               )));
         },
         child: Container(
@@ -118,7 +113,7 @@ class _CookiePageState extends State<CookiePage> {
                     width: 60.0,
                     decoration: BoxDecoration(
                         image: DecorationImage(
-                            image: AssetImage(imgPath), fit: BoxFit.contain)),
+                            image: NetworkImage(imgPath), fit: BoxFit.contain)),
                   )),
               const SizedBox(height: 5.0),
               Text(

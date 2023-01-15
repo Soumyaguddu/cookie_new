@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import 'bottom_bar.dart';
+import 'widgets/bottom_bar.dart';
 
 class CookieDetail extends StatelessWidget {
-  final assetPath, cookieprice, cookiename;
+  final imgPath, cookieprice, cookiename,desc;
 
-  const CookieDetail({this.assetPath, this.cookieprice, this.cookiename});
+  const CookieDetail({super.key, this.imgPath, this.cookieprice, this.cookiename, this.desc });
 
   @override
   Widget build(BuildContext context) {
@@ -45,10 +45,8 @@ class CookieDetail extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                       color: Color(0xFFF17532)))),
           const SizedBox(height: 15.0),
-          Hero(
-              tag: assetPath,
-              child: Image.asset(assetPath,
-                  height: 150.0, width: 150.0, fit: BoxFit.contain)),
+          Image.network(imgPath,
+              height: 150.0, width: 150.0, fit: BoxFit.contain),
           const SizedBox(height: 20.0),
           Center(
             child: Text(
@@ -72,17 +70,17 @@ class CookieDetail extends StatelessWidget {
           Center(
               child: SizedBox(
                   width: MediaQuery.of(context).size.width - 50.0,
-                  child: const Text(
-                      'Cold, creamy ice cream sandwiched between delicious deluxe cookies. Pick your favorite deluxe cookies and ice cream flavor.',
+                  child:  Text(
+                      desc,
                       textAlign: TextAlign.center,
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontFamily: 'Varela',
                           fontSize: 16.0,
                           color:Colors.grey)))),
           const SizedBox(height: 20.0),
           Center(
               child: Container(
-                  width: MediaQuery.of(context).size.width - 50.0,
+                  width: MediaQuery.of(context).size.width - 30.0,
                   height: 50.0,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(25.0),

@@ -1,7 +1,8 @@
+import 'package:cookie_new/widgets/drawer.dart';
 import 'package:flutter/material.dart';
 
-import 'bottom_bar.dart';
 import 'cookie_view.dart';
+import 'widgets/bottom_bar.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: MyHomePage(title: 'Cookie App'),
+      home: MyHomePage(title: 'Electronics'),
     );
   }
 }
@@ -32,6 +33,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage>
     with SingleTickerProviderStateMixin {
   late TabController _tabController = TabController(length: 3, vsync: this);
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
@@ -42,14 +44,17 @@ class _MyHomePageState extends State<MyHomePage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
           backgroundColor: Colors.white70,
           title: Text(widget.title),
           centerTitle: true,
           elevation: 0.0,
           leading: IconButton(
-            icon: const Icon(Icons.arrow_back, color: Color(0xFF19191A)),
-            onPressed: () {},
+            icon: const Icon(Icons.menu, color: Colors.black),
+            onPressed: () {
+              _scaffoldKey.currentState?.openDrawer();
+            },
           ),
           titleTextStyle: const TextStyle(
               color: Colors.black,
@@ -65,14 +70,14 @@ class _MyHomePageState extends State<MyHomePage>
       body: ListView(
           padding: const EdgeInsets.only(left: 20.0),
           children: <Widget>[
-            const SizedBox(height: 15.0),
+            const SizedBox(height: 5.0),
             const Text("Categories",
                 style: TextStyle(
                     color: Color(0xFFF17532),
                     fontWeight: FontWeight.bold,
-                    fontSize: 42.0,
+                    fontSize: 30.0,
                     fontFamily: 'Varela')),
-            const SizedBox(height: 15.0),
+            const SizedBox(height: 5.0),
             TabBar(
                 controller: _tabController,
                 indicatorColor: Colors.transparent,
@@ -82,21 +87,7 @@ class _MyHomePageState extends State<MyHomePage>
                 unselectedLabelColor: const Color(0xFFCDCDCD),
                 tabs: const [
                   Tab(
-                    child: Text('Cookies',
-                        style: TextStyle(
-                          fontFamily: 'Varela',
-                          fontSize: 21.0,
-                        )),
-                  ),
-                  Tab(
-                    child: Text('Cookie cake',
-                        style: TextStyle(
-                          fontFamily: 'Varela',
-                          fontSize: 21.0,
-                        )),
-                  ),
-                  Tab(
-                    child: Text('Ice cream',
+                    child: Text('Electronics',
                         style: TextStyle(
                           fontFamily: 'Varela',
                           fontSize: 21.0,
@@ -119,9 +110,10 @@ class _MyHomePageState extends State<MyHomePage>
       floatingActionButton: FloatingActionButton(
           onPressed: () {},
           backgroundColor: Colors.orange,
-          child: const Icon(Icons.fastfood)),
+          child: const Icon(Icons.payment)),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: const BottomBar(),
+      drawer: const MyDrawer(),
     );
   }
 }
