@@ -1,11 +1,11 @@
-import 'package:cookie_new/main.dart';
 import 'package:flutter/material.dart';
 
-import '../../SignUp/signup.dart';
+import '../../Login/login_page.dart';
 import '../../already_have_an_account.dart';
 import '../../constants.dart';
-class LoginPageForm extends StatelessWidget {
-  const LoginPageForm({Key? key}) : super(key: key);
+import '../../main.dart';
+class SignUpField extends StatelessWidget {
+  const SignUpField({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +28,7 @@ class LoginPageForm extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: defaultPadding),
             child: TextFormField(
+
               textInputAction: TextInputAction.done,
               obscureText: true,
               cursorColor: kPrimaryColor,
@@ -42,7 +43,7 @@ class LoginPageForm extends StatelessWidget {
           ),
           const SizedBox(height: defaultPadding),
           Hero(
-            tag: "login_btn",
+            tag: "signUp_btn",
             child: ElevatedButton(
               onPressed: () {
                 Navigator.push(
@@ -55,19 +56,19 @@ class LoginPageForm extends StatelessWidget {
                 );
               },
               child: Text(
-                "Login".toUpperCase(),
+                "Sign Up".toUpperCase(),
               ),
             ),
           ),
           const SizedBox(height: defaultPadding),
           AlreadyHaveAnAccount(
-            login: true,
+            login: false,
             press: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder: (context) {
-                    return const SignUp();
+                    return const LoginPage();
                   },
                 ),
               );

@@ -1,28 +1,27 @@
-import 'package:cookie_new/Login/Component/login_field.dart';
-import 'package:cookie_new/Login/Component/login_screen_top_image.dart';
-import 'package:cookie_new/widgets/responsive.dart';
 import 'package:flutter/material.dart';
 
 import '../background.dart';
-
-class LoginPage extends StatelessWidget {
-  const LoginPage({Key? key}) : super(key: key);
+import '../widgets/responsive.dart';
+import 'Component/signup_field.dart';
+import 'Component/signup_top_image.dart';
+class SignUp extends StatelessWidget {
+  const SignUp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BackGround(
       child: SingleChildScrollView(
         child: Responsive(
-          mobile: const MobileLoginScreen(),
+          mobile: const MobileSignUpScreen(),
           desktop: Row(
-            children:  [const Expanded(child: LoginTopPage()),
+            children:  [const Expanded(child: SignUpTopImage()),
               Expanded(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: const [
                     SizedBox(
                       width: 350,
-                      child: LoginPageForm(),
+                      child: SignUpField(),
                     ),
                   ],
                 ),
@@ -32,10 +31,10 @@ class LoginPage extends StatelessWidget {
       ),
     );
   }
-}
 
-class MobileLoginScreen extends StatelessWidget {
-  const MobileLoginScreen({
+}
+class MobileSignUpScreen extends StatelessWidget {
+  const MobileSignUpScreen({
     Key? key,
   }) : super(key: key);
 
@@ -44,13 +43,13 @@ class MobileLoginScreen extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        const LoginTopPage(),
+        const SignUpTopImage(),
         Row(
           children: const [
             Spacer(),
             Expanded(
               flex: 8,
-              child: LoginPageForm(),
+              child: SignUpField(),
             ),
             Spacer(),
           ],
