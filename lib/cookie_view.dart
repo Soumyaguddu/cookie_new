@@ -23,7 +23,7 @@ class _CookiePageState extends State<CookiePage> {
 
   loadData() async {
     await Future.delayed(const Duration(seconds: 3));
-    var catalogJson = await rootBundle.loadString("assets/assets/catalog.json");
+    var catalogJson = await rootBundle.loadString("assets/images/mobile.json");
 
     var decodeData = jsonDecode(catalogJson);
     var productData = decodeData["products"];

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'constants.dart';
 import 'widgets/bottom_bar.dart';
 
 class CookieDetail extends StatelessWidget {
@@ -98,8 +99,8 @@ class CookieDetail extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
           onPressed: () {},
-          backgroundColor: const Color(0xFFF17532),
-          child: const Icon(Icons.fastfood)),
+          backgroundColor: kPrimaryColor,
+          child: const Icon(Icons.payment)),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: const BottomBar(),
     );
