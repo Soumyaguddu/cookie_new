@@ -1,3 +1,4 @@
+import 'package:cookie_new/Profile/profile.dart';
 import 'package:cookie_new/main.dart';
 import 'package:flutter/material.dart';
 
@@ -67,7 +68,7 @@ class LoginPageForm extends StatelessWidget {
                 context,
                 MaterialPageRoute(
                   builder: (context) {
-                    return const SignUp();
+                    return ProfilePage();
                   },
                 ),
               );
