@@ -44,8 +44,8 @@ class _CookiePageState extends State<CookiePage> {
           const SizedBox(height: 15.0),
           Container(
             padding: const EdgeInsets.only(right: 15.0),
-            width: MediaQuery.of(context).size.width - 30.0,
-            height: MediaQuery.of(context).size.height - 50.0,
+            width: MediaQuery.of(context).size.width - 15.0,
+            height: MediaQuery.of(context).size.height - 40.0,
 
             child: GridView.count(
               crossAxisCount: 2,
@@ -110,7 +110,7 @@ class _CookiePageState extends State<CookiePage> {
                   tag: imgPath,
                   child: Container(
                     height: 60.0,
-                    width: 60.0,
+                    width: 120.0,
                     decoration: BoxDecoration(
                         image: DecorationImage(
                             image: NetworkImage(imgPath), fit: BoxFit.contain)),

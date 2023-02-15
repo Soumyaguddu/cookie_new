@@ -50,7 +50,7 @@ class LoginPageForm extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     builder: (context) {
-                      return const MyHomePage(title: "Electronics");
+                      return const HomePage(title: "Electronics");
                     },
                   ),
                 );
@@ -68,7 +68,7 @@ class LoginPageForm extends StatelessWidget {
                 context,
                 MaterialPageRoute(
                   builder: (context) {
-                    return ProfilePage();
+                    return SignUp();
                   },
                 ),
               );

@@ -1,3 +1,4 @@
+import 'package:cookie_new/Profile/profile_details.dart';
 import 'package:flutter/material.dart';
 
 import '../model/user.dart';
@@ -20,11 +21,20 @@ class _ProfilePageState extends State<ProfilePage> {
     return Scaffold(
       appBar: buildAppBar(context),
       body: ListView(
-        physics: BouncingScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
         children: [
           ProfileWidget(
             imagePath: user.imagePath,
-            onClicked: () async {},
+            onClicked: () async {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return ProfilePNewage();
+                  },
+                ),
+              );
+            },
           ),
           const SizedBox(height: 24),
           buildName(user),
